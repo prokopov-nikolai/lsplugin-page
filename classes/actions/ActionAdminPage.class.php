@@ -19,7 +19,7 @@
  * @author Maxim Mzhelskiy <rus.engine@gmail.com>
  *
  */
-class PluginPage_ActionAdmin extends PluginAdmin_ActionPlugin
+class PluginPage_ActionAdminPage extends PluginAdmin_ActionPlugin
 {
 
     /**
@@ -30,12 +30,12 @@ class PluginPage_ActionAdmin extends PluginAdmin_ActionPlugin
 
     public function Init()
     {
-        $this->oAdminUrl = Engine::GetEntity('PluginAdmin_ModuleUi_EntityAdminUrl');
-        $this->oAdminUrl->setPluginCode(Plugin::GetPluginCode($this));
-        $this->oUserCurrent = $this->User_GetUserCurrent();
-        $this->Viewer_AppendScript(Plugin::GetWebPath(__CLASS__) . 'js/admin.js');
+	    parent::Init();
+
+	    $this->Viewer_AppendScript(Plugin::GetWebPath(__CLASS__) . 'js/admin.js');
 
         $this->SetDefaultEvent('index');
+	    $this->AppendBreadCrumb(20, 'Страницы', 'page');
     }
 
     /**
@@ -88,7 +88,11 @@ class PluginPage_ActionAdmin extends PluginAdmin_ActionPlugin
      */
     protected function EventCreate()
     {
-        /**
+	    /**
+	     * Хлебные крошки
+	     */
+	    $this->AppendBreadCrumb(30, 'Создать');
+	    /**
          * Получаем список страниц
          */
         $aPages = $this->PluginPage_Main_LoadTreeOfPage(array('#order' => array('sort' => 'desc')));
@@ -110,6 +114,10 @@ class PluginPage_ActionAdmin extends PluginAdmin_ActionPlugin
             $this->Message_AddErrorSingle('Не удалось найти страницу', $this->Lang_Get('error'));
             return $this->EventError();
         }
+	    /**
+	     * Хлебные крошки
+	     */
+	    $this->AppendBreadCrumb(30, 'Редактирование: '.$oPage->getId());
 
         /**
          * Получаем список страниц

@@ -7,7 +7,7 @@
 		<lang name="default">LiveStreet Developers Team</lang>
 	</author>
 	<homepage>http://livestreet.ru</homepage>
-	<settings>{admin/plugin/page}</settings>
+	<settings>{admin/page}</settings>
 	<version>2.0</version>
 	<requires>
 		<livestreet>1.0</livestreet>

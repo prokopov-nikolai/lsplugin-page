@@ -17,15 +17,15 @@ ls.plugin.page.admin =( function ($) {
 	};
 
 	this.createPage = function(form) {
-		this.ajaxSubmitSimple(ls.registry.get('sAdminUrl')+'ajax/page-create/',form);
+		this.ajaxSubmitSimple(ls.registry.get('sAdminUrl')+'page/ajax/page-create/',form);
 	};
 
 	this.updatePage = function(form) {
-		this.ajaxSubmitSimple(ls.registry.get('sAdminUrl')+'ajax/page-update/',form);
+		this.ajaxSubmitSimple(ls.registry.get('sAdminUrl')+'page/ajax/page-update/',form);
 	};
 
 	this.removePage = function(id) {
-		ls.ajax.load(ls.registry.get('sAdminUrl')+'ajax/page-remove/',{ id: id },function(res){
+		ls.ajax.load(ls.registry.get('sAdminUrl')+'page/ajax/page-remove/',{ id: id },function(res){
 			if (res.bStateError) {
 				ls.msg.error(null, res.sMsg);
 			}

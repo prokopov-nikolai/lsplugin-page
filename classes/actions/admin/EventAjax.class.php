@@ -55,7 +55,7 @@ class PluginPage_ActionAdmin_EventAjax extends Event
              * Добавляем в БД
              */
             if ($oPage->Add()) {
-                $this->Viewer_AssignAjax('sUrlRedirect', $this->oAdminUrl->get(null, 'page'));
+                $this->Viewer_AssignAjax('sUrlRedirect', '/'.Config::Get('plugin.admin.url').'/page/update/'.$oPage->getId().'/');
                 $this->Message_AddNotice('Добавление прошло успешно', $this->Lang_Get('attention'));
             } else {
                 $this->Message_AddError('Возникла ошибка при добавлении', $this->Lang_Get('error'));
@@ -103,7 +103,7 @@ class PluginPage_ActionAdmin_EventAjax extends Event
                 $this->PluginPage_Main_RebuildPageUrlFull($oPage);
 
                 $this->Message_AddNotice('Обновление прошло успешно', $this->Lang_Get('attention'));
-                $this->Viewer_AssignAjax('sUrlRedirect', $this->oAdminUrl->get());
+                $this->Viewer_AssignAjax('sUrlRedirect', '');
             } else {
                 $this->Message_AddError('Возникла ошибка при обновлении', $this->Lang_Get('error'));
             }
@@ -129,7 +129,7 @@ class PluginPage_ActionAdmin_EventAjax extends Event
          */
         if ($oPage->Delete()) {
             $this->Message_AddNoticeSingle("Удаление прошло успешно");
-            $this->Viewer_AssignAjax('sUrlRedirect', $this->oAdminUrl->get());
+            $this->Viewer_AssignAjax('sUrlRedirect', '/'.Config::Get('plugin.admin.url').'/page/');
         } else {
             $this->Message_AddErrorSingle("Ошибка при удалении");
         }
