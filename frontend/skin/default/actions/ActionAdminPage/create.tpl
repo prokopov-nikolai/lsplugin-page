@@ -39,7 +39,7 @@
 			label   = 'Вложить в'
 			classes = 'width-200'
 			items   = $aCategoriesList
-			selected= ($oPage) ? $oPage->getPid() : '' }
+			selectedValue= ($oPage) ? $oPage->getPid() : '' }
 
 
 
