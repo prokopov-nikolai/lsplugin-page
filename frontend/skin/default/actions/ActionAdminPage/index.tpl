@@ -34,7 +34,7 @@
 					{$oPageItem=$aPageItem.entity}
 					<tr id="article-item-{$oPageItem->getId()}">
 						<td>
-							<i class="{if $aPageItem.level == 0}icon-folder-close{else}icon-file{/if}" style="margin-left: {$aPageItem.level*20}px;"></i>
+							<i class="{if $aPageItem.level == 0}ls-icon-folder-close{else}ls-icon-file{/if}" style="margin-left: {$aPageItem.level*20}px;"></i>
 							<a href="{$oPageItem->getWebUrl()}">{$oPageItem->getTitle()}</a>
 						</td>
 						<td>

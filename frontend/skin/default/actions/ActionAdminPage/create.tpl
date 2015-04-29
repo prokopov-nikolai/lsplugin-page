@@ -90,7 +90,7 @@
 
 		{component 'field' template='file'
 				name  = 'file'
-				label = "Файл <span id='page_file_path'>{$oPage->getFile()}</span>"}
+				label = "Файл <span id='page_file_path'>{($oPage) ? $oPage->getFile() : ''}</span>"}
 
 		{component 'field' template='checkbox'
 				name  = 'page[auto_br]'

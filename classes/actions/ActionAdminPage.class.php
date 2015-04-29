@@ -36,6 +36,37 @@ class PluginPage_ActionAdminPage extends PluginAdmin_ActionPlugin
 
         $this->SetDefaultEvent('index');
 	    $this->AppendBreadCrumb(20, 'Страницы', 'page');
+
+	    /**
+	     * ИМПОРТ ПРЕССРЕЛИЗОВ
+
+	    set_time_limit(0);
+	    $sContent = file_get_contents($this->Fs_GetPathServer('[relative]/123.html'));
+	    preg_match_all('/<li class="release">(.*?)<\/li>/s', $sContent, $aM, PREG_SET_ORDER);
+	    foreach($aM as $aData){
+		    preg_match_all('/<a href="([^"]+).*?>(.*?)<\/a>(.*?)<span class="date">(\d\d.\d\d.\d\d\d\d)<\/span>(\n|\t|\r)+(.*)/s', $aData[1], $aP, PREG_SET_ORDER);
+		    if (!$oPage = $this->PluginPage_Main_GetPageByTitle($aP[0][2])){
+			    $oPage = Engine::GetEntity('PluginPage_Main_Page');
+			    $oPage->setDateAdd(date('Y-m-d 12:00:00', strtotime($aP[0][4])));
+			    $oPage->setTitle($aP[0][2]);
+			    $oPage->setUrl($this->Text_Transliteration($aP[0][2]));
+			    $oPage->setUrlFull('press/'.$this->Text_Transliteration($aP[0][2]));
+			    $oPage->setText($aP[0][6]);
+			    $oPage->setPid(8);
+			    $oPage->setAutoBr(0);
+			    $oPage->Add();
+			    //Сохраняем файл
+			    $sFilePathDest = 'http://www.waltdisney.ru'.$aP[0][1];
+			    $sFileName = basename($sFilePathDest);
+			    $sFileName = $oPage->getId().'_'.$sFileName;
+			    $sDirDest = '/uploads/files/';
+			    $this->Fs_SaveFileLocalSmart($sFilePathDest, $sDirDest, $sFileName, 0644);
+			    $oPage->setFile('[relative]'.$sDirDest.$sFileName);
+			    $oPage->Update();
+		    }
+	    }
+
+	    prex('123');*/
     }
 
     /**

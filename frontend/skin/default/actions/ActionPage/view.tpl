@@ -21,30 +21,14 @@
 			<h3>Пресс-релизы</h3>
 
 			<ul>
-
-
-
-
-
-
-				<li class="release">
-					<h4><a href="/press/pressreleases/cms_res/MARVEL_Avengers_Age_of_Ultron.doc">Блокбастер «Мстители: Эра Альтрона» поставил рекорд по кассовым сборам для фильмов Disney и MARVEL в российском прокате</a></h4>
-					<span class="date">28/04/2015</span>
-					Сборы блокбастера MARVEL «Мстители: Эра Альтрона» за первые четыре дня проката в России составили более 850 миллионов рублей (более 16,4 млн долларов США).
-				</li>
-
-
-
-
-
-				<li class="release">
-					<h4><a href="/press/pressreleases/cms_res/MARVEL_PressRelease_products.doc">MARVEL представляет широкую коллекцию товаров, вдохновленных супергероями</a></h4>
-					<span class="date">20/04/2015</span>
-					<p>В преддверии долгожданной премьеры блокбастера MARVEL «Мстители: Эра Альтрона» в магазинах по всей стране можно будет найти широкий ассортимент товаров, посвященных легендарной команде Мстителей, а также другим супергероям!</p>
-				</li>
-
+				{foreach $aPress as $oPP}
+					<li class="release">
+						<h4><a href="{$oPP->getFileWevPath()}">{$oPP->getTitle()}</a></h4>
+						<span class="date">{date_format date=$oPP->getDateAdd() format='d/m/Y'}</span>
+						{$oPP->getText()}
+					</li>
+				{/foreach}
 			</ul>
-
 			<a class="archive" href="/press/pressreleases/">Архив пресс-релизов</a>
 		</div>
 	{/if}

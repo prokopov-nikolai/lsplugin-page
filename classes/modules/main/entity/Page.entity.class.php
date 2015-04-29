@@ -72,7 +72,7 @@ class PluginPage_ModuleMain_EntityPage extends EntityORM
          * Если статья новая, то устанавливаем дату создания
          */
         if ($this->_isNew()) {
-            $this->setDateAdd(date("Y-m-d H:i:s"));
+	        if (!isset($this->_aData['date_add'])) $this->setDateAdd(date("Y-m-d H:i:s"));
         } else {
             $this->setDateEdit(date("Y-m-d H:i:s"));
         }
@@ -201,4 +201,9 @@ class PluginPage_ModuleMain_EntityPage extends EntityORM
     {
         return '/' . Config::Get('plugin.admin.url') . "/page/update/{$this->getId()}/";
     }
+
+	public function getFileWebPath()
+	{
+		return $this->Fs_GetPathWeb($this->getFile());
+	}
 }

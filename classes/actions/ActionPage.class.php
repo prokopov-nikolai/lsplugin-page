@@ -36,6 +36,7 @@ class PluginPage_ActionPage extends ActionPlugin
      */
     protected function RegisterEvent()
     {
+	    $this->AddEvent('pressreleases', 'PressReleases');
         $this->AddEventPreg('/^[\w\-\_]*$/i', 'EventShowPage');
     }
 
@@ -81,8 +82,33 @@ class PluginPage_ActionPage extends ActionPlugin
 		    $this->Viewer_Assign('aPageChild', $this->PluginPage_Main_GetPageItemsByPid($oPage->getPid()));
 	    }
 	    /**
+	     * press
+	     */
+	    if ($sUrlFull == 'press') {
+		   $aPress = $this->PluginPage_Main_GetPageItemsByFilter(array(
+			    '#order' => array('t.date_add' => 'desc'),
+			    '#limit' => 2,
+			    '#where' => array('pid = ?d' => array(8)),
+//			    '#where' => array('t.date_add > ? AND t.date_add < ? AND pid = ?d' => array(date("Y-m-01 00:00:00"), date('Y-m-t 23:59:59'), 8)),
+			    'active' => 1
+		    ));
+		    $this->Viewer_Assign('aPress', $aPress);
+	    }
+	    /**
          * Устанавливаем шаблон для вывода
          */
         $this->SetTemplateAction('view');
     }
+
+	public function PressReleases()
+	{
+		$aPress = $this->PluginPage_Main_GetPageItemsByFilter(array(
+			'#order' => array('t.date_add' => 'desc'),
+			'#where' => array('pid = ?d' => array(8)),
+//			    '#where' => array('t.date_add > ? AND t.date_add < ? AND pid = ?d' => array(date("Y-m-01 00:00:00"), date('Y-m-t 23:59:59'), 8)),
+			'active' => 1
+		));
+		$this->Viewer_Assign('aPress', $aPress);
+		$this->SetTemplateAction('archive');
+	}
 }
