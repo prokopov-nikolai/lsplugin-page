@@ -55,12 +55,21 @@
 				label = 'URL'}
 
 
-		{component 'field' template='textarea'
-				name    = 'page[text]'
-				value   = (($oPage) ? $oPage->getText() : '')|escape
-				label   = 'Текст'
-				rows    = 20}
+		{*{component 'field' template='textarea'*}
+				{*name    = 'page[text]'*}
+				{*value   = (($oPage) ? $oPage->getText() : '')|escape*}
+				{*label   = 'Текст'*}
+				{*rows    = 20}*}
 
+
+		{component 'editor'
+				set             = 'light'
+				mediaTargetType = 'topic'
+				name            = 'page[text]'
+				rules           = [ 'required' => true, 'length' => '[10,5000]' ]
+				inputClasses    = 'js-editor-default'
+				label           = 'Текст'
+				value           = (($oPage) ? $oPage->getText() : '')|escape}
 
 		{component 'field' template='text'
 				name  = 'page[seo_keywords]'
@@ -79,6 +88,9 @@
 				value = ($oPage) ? $oPage->getSort() : ''
 				label = 'Сортировка'}
 
+		{component 'field' template='file'
+				name  = 'file'
+				label = "Файл <span id='page_file_path'>{$oPage->getFile()}</span>"}
 
 		{component 'field' template='checkbox'
 				name  = 'page[auto_br]'

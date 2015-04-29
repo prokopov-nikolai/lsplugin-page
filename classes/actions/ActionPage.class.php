@@ -47,13 +47,8 @@ class PluginPage_ActionPage extends ActionPlugin
         /**
          * Составляем полный URL страницы для поиска по нему в БД
          */
-        $sUrlFull = join('/', $this->GetParams());
-        if ($sUrlFull != '') {
-            $sUrlFull = $this->sCurrentEvent . '/' . $sUrlFull;
-        } else {
-            $sUrlFull = $this->sCurrentEvent;
-        }
-        /**
+	    $sUrlFull = trim(join('/', array_merge(array(Router::GetAction(), Router::GetActionEvent()), $this->GetParams())), '/');
+	    /**
          * Ищем страничку в БД
          */
         if (!($oPage = $this->PluginPage_Main_GetPageByFilter(array('url_full' => $sUrlFull, 'active' => 1)))) {
@@ -72,14 +67,20 @@ class PluginPage_ActionPage extends ActionPlugin
 
         $this->Viewer_Assign('oPage', $oPage);
         $this->Viewer_Assign('sMenuHeadItemSelect', 'page_' . $oPage->getUrl());
-        /**
-         * Добавляем блок
-         */
-        if (Config::Get('plugin.page.show_block_structure')) {
-            $this->Viewer_AddBlock('right', 'structure',
-                array('plugin' => Plugin::GetPluginCode($this), 'current_page' => $oPage));
-        }
-        /**
+//        /**
+//         * Добавляем блок
+//         */
+//        if (Config::Get('plugin.page.show_block_structure')) {
+//            $this->Viewer_AddBlock('right', 'structure',
+//                array('plugin' => Plugin::GetPluginCode($this), 'current_page' => $oPage));
+//        }
+	    /**
+	     * Под страницы
+	     */
+	    if ($oPage->getPid() > 0) {
+		    $this->Viewer_Assign('aPageChild', $this->PluginPage_Main_GetPageItemsByPid($oPage->getPid()));
+	    }
+	    /**
          * Устанавливаем шаблон для вывода
          */
         $this->SetTemplateAction('view');

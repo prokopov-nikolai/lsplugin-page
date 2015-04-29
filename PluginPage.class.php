@@ -31,7 +31,11 @@ class PluginPage extends Plugin
 
     public function Init()
     {
-
+	    $aMenu = $this->PluginPage_Main_GetPageItemsByFilter(array(
+		    '#where' => array('t.main = ?d' => array(1)),
+		    '#order' => array('sort' => 'desc')
+	    ));
+	    $this->Viewer_Assign('aMenu', $aMenu);
     }
 
     public function Activate()

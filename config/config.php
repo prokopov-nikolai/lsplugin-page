@@ -3,10 +3,21 @@
  * Таблица БД
  */
 $config['$root$']['db']['table']['page_main_page'] = '___db.table.prefix___page';
+Config::Set('db.table.page_main_page', Config::Get('db.table.prefix').'page');
+
 /**
  * Роутинг
  */
 $config['$root$']['router']['page'][Config::Get('plugin.admin.url').'_page'] = 'PluginPage_ActionAdminPage';
+
+$aPage = LS::getInstance()->PluginPage_Main_GetPageItemsByFilter(array(
+	'#where' => array('t.pid IS NULL' => array()),
+    'active' => 1,
+));
+foreach($aPage as $oPage){
+	$config['$root$']['router']['page'][$oPage->getUrl()] = 'PluginPage_ActionPage';
+}
+
 /**
  * Показывать на страницах блок со структурой страниц
  */

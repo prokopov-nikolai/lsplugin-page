@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `prefix_page` (
   `main` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `sort` int(11) NOT NULL,
   `auto_br` tinyint(1) NOT NULL DEFAULT '1',
+  `file` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `pid` (`pid`),
   KEY `url_full` (`url_full`,`active`),

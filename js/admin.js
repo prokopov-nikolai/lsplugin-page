@@ -7,6 +7,7 @@ ls.plugin.page.admin =( function ($) {
 	this.ajaxSubmitSimple = function(url,form) {
 		form='#'+form;
 		ls.ajax.submit(url,form,function(res){
+			if (typeof res.sFilePath != 'undefined') $('#page_file_path').html(res.sFilePath);
 			if (res.sUrlRedirect) {
 				window.location.href=res.sUrlRedirect;
 			}

@@ -43,10 +43,10 @@
 						<td>{($oPageItem->getActive()) ? 'да' : 'нет'}</td>
 						<td>{($oPageItem->getMain()) ? 'да' : 'нет'}</td>
 						<td class="ta-r">
-							<a href="/{Config::Get('plugin.admin.url')}/page/update/{$oPageItem->getId()}/" class="icon-edit" title="Изменить"></a>
-							<a href="#" class="icon-remove" onclick="if (confirm('Действительно удалить?')) { ls.plugin.page.admin.removePage({$oPageItem->getId()}); } return false;" title="Удалить"></a>
-							<a href="/{Config::Get('plugin.admin.url')}/page/sort/up/{$oPageItem->getId()}/?security_ls_key={$LIVESTREET_SECURITY_KEY}" class="icon-arrow-up" title="Поднять вверх"></a>
-							<a href="/{Config::Get('plugin.admin.url')}/page/sort/down/$oPageItem->getId()}/?security_ls_key={$LIVESTREET_SECURITY_KEY}" class="icon-arrow-down" title="Опустить вниз"></a>
+							<a href="/{Config::Get('plugin.admin.url')}/page/update/{$oPageItem->getId()}/" class="ls-icon-edit" title="Изменить"></a>
+							<a href="#" class="ls-icon-remove" onclick="if (confirm('Действительно удалить?')) { ls.plugin.page.admin.removePage({$oPageItem->getId()}); } return false;" title="Удалить"></a>
+							<a href="/{Config::Get('plugin.admin.url')}/page/sort/up/{$oPageItem->getId()}/?security_ls_key={$LIVESTREET_SECURITY_KEY}" class="ls-icon-arrow-up" title="Поднять вверх"></a>
+							<a href="/{Config::Get('plugin.admin.url')}/page/sort/down/$oPageItem->getId()}/?security_ls_key={$LIVESTREET_SECURITY_KEY}" class="ls-icon-arrow-down" title="Опустить вниз"></a>
 						</td>
 					</tr>
 				{/foreach}
