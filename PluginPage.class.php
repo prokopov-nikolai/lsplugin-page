@@ -33,9 +33,18 @@ class PluginPage extends Plugin
     {
 	    $aMenu = $this->PluginPage_Main_GetPageItemsByFilter(array(
 		    '#where' => array('t.main = ?d' => array(1)),
-		    '#order' => array('sort' => 'desc')
+		    '#order' => array('sort' => 'desc'),
+		    'active' => 1
 	    ));
 	    $this->Viewer_Assign('aMenu', $aMenu);
+
+	    if (Router::GetAction() == 'index') {
+		    $this->Viewer_Assign('aPressAll', $this->PluginPage_Main_GetPageItemsByFilter(array(
+			    '#where' => array('t.pid = ?d' => array(8)),
+			    '#order' => array('sort' => 'desc'),
+			    'active' => 1
+		    )));
+	    }
     }
 
     public function Activate()
