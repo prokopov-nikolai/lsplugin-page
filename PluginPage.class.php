@@ -41,7 +41,7 @@ class PluginPage extends Plugin
 	    if (Router::GetAction() == 'index') {
 		    $this->Viewer_Assign('aPressAll', $this->PluginPage_Main_GetPageItemsByFilter(array(
 			    '#where' => array('t.pid = ?d' => array(8)),
-			    '#order' => array('sort' => 'desc'),
+			    '#order' => array('date_add' => 'desc'),
 			    'active' => 1
 		    )));
 		    $this->Viewer_Assign('aLicenseAll', $this->PluginPage_Main_GetPageItemsByFilter(array(
