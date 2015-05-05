@@ -109,6 +109,7 @@ class PluginPage_ActionPage extends ActionPlugin
 			'active' => 1
 		));
 		$this->Viewer_Assign('aPress', $aPress);
+		$this->Viewer_Assign('oPage', Engine::GetEntity('PluginPage_Main_Page', array('pid' => 8)));
 		$this->SetTemplateAction('archive');
 	}
 }

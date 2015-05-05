@@ -44,6 +44,11 @@ class PluginPage extends Plugin
 			    '#order' => array('sort' => 'desc'),
 			    'active' => 1
 		    )));
+		    $this->Viewer_Assign('aLicenseAll', $this->PluginPage_Main_GetPageItemsByFilter(array(
+			    '#where' => array('t.pid = ?d' => array(267)),
+			    '#order' => array('sort' => 'desc'),
+			    'active' => 1
+		    )));
 	    }
     }
 
