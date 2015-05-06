@@ -23,7 +23,7 @@
 			<ul>
 				{foreach $aPress as $oPP}
 					<li class="release">
-						<h4><a href="{$oPP->getFileWevPath()}">{$oPP->getTitle()}</a></h4>
+						<h4><a href="{$oPP->getFileWebPath()}">{$oPP->getTitle()}</a></h4>
 						<span class="date">{date_format date=$oPP->getDateAdd() format='d/m/Y'}</span>
 						{$oPP->getText()}
 					</li>
